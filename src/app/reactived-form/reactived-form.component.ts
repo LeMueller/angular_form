@@ -8,19 +8,21 @@ import { FormControl, FormGroup, FormArray } from '@angular/forms';
 })
 export class ReactivedFormComponent implements OnInit {
 
-  private nickName = new FormControl('Tom');
+  private formModel: FormGroup;
 
-  private passwordInfo = new FormGroup({
-    password: new FormControl(),
-    passwordConfirm: new FormControl(),
-  });
-
-  private emails = new FormArray([
-    new FormControl("a@a.com"),
-    new FormControl("b@b.com"),
-  ]);
-
-  constructor() { }
+  constructor() {
+    this.formModel = new FormGroup({
+      nickName: new FormControl(),
+      emails : new FormArray([
+        new FormControl(),
+      ]),
+      mobile: new FormControl(),
+      passwordInfo : new FormGroup({
+        password: new FormControl(),
+        passwordConfirm: new FormControl(),
+      }),
+    });
+  }
 
   ngOnInit() {
   }
