@@ -1,0 +1,22 @@
+<!-- 带有ngForm属性的表单会被Angular接管， 带有ngNoForm的会取消接管 -->
+
+<form #myForm="ngForm" (ngSubmit)="createUser(myForm.value)" action="/regist" method="post">
+<!-- <form action="/regist" method="post" ngNoForm> -->
+<!-- <div ngForm> -->
+  <div>昵称：<input #myNickName="ngModel" ngModel name="nickname"         type="text" required pattern="[a-zA-Z0-9]+"></div>
+  <div>手机号：<input type="text"></div>
+  <div>邮政编码：<input type="number" min="100000" max="999999"></div>
+  <div>密码：<input type="password"></div>
+  <div>确认密码：<input type="password"></div>
+  <button type="submit">注册</button>
+<!-- </div> -->
+<!-- </form> -->
+</form>
+
+<div>
+  {{myForm.value | json}}
+</div>
+
+<div>
+  昵称的值是{{myNickName.value}}
+</div>
