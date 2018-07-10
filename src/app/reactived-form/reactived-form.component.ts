@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { FormControl, FormGroup, FormArray } from '@angular/forms';
+import { FormControl, FormGroup, FormArray, FormBuilder } from '@angular/forms';
 import { Logs } from 'selenium-webdriver';
 
 @Component({
@@ -13,19 +13,36 @@ export class ReactivedFormComponent implements OnInit {
 
   private formModel: FormGroup;
 
+  // Use FormBuilder to refactor the data
+  private fb: FormBuilder = new FormBuilder();
+
   constructor() {
-    this.formModel = new FormGroup({
-      nickName: new FormControl(),
-      emails : new FormArray([
-        new FormControl(),
+    this.formModel = this.fb.group({
+      nickName: ['xxxx'],
+      emails : this.fb.array([
+        [''],
       ]),
-      mobile: new FormControl(),
-      passwordInfo : new FormGroup({
-        password: new FormControl(),
-        passwordConfirm: new FormControl(),
+      mobile: [''],
+      passwordInfo : this.fb.group({
+        password: [''],
+        passwordConfirm: [''],
       }),
     });
   }
+
+  // constructor() {
+  //   this.formModel = new FormGroup({
+  //     nickName: new FormControl(),
+  //     emails : new FormArray([
+  //       new FormControl(),
+  //     ]),
+  //     mobile: new FormControl(),
+  //     passwordInfo : new FormGroup({
+  //       password: new FormControl(),
+  //       passwordConfirm: new FormControl(),
+  //     }),
+  //   });
+  // }
 
   addEmail() {
     let emails = this.formModel.get('emails') as FormArray;
