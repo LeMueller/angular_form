@@ -1,3 +1,25 @@
-<p>
-  reactived-form works!
-</p>
+<!-- <input type="text" formControl="xxx"> -->
+
+<form [formGroup]="formModel" (submit)="createUser()">
+    <!-- 绑定对象里面的名字时，除了formControlArray, 都要用 xxxName。 因为[]是属性绑定， 类里一定更要有一个对应的属性，然而对象里的名字不是类里的属性，所以不行 -->
+    <div>昵称：<input formControlName="nickName" type="text" required pattern="[a-zA-Z0-9]+"></div>
+
+    <div>邮箱
+      <ul formArrayName="emails">
+        <li *ngFor="let email of formModel.get('emails').controls; let i = index;">
+          <!-- 因为formArrayName是array，不是object，没有属性名，所以必须要加[]，  -->
+          <input [formControlName]="i">
+        </li>
+      </ul>
+      <button (click)="addEmail()">增加Email</button>
+    </div>
+
+    <div>手机号：<input formControlName="mobile" type="number"></div>
+  
+    <div formGroupName="passwordInfo">
+      <div>密码：<input formControlName="password" type="password"></div>
+      <div>确认密码：<input formControlName="passwordConfirm" type="password"></div>
+    </div>
+  
+    <button type="submit">注册</button>
+</form>

@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { FormControl, FormGroup, FormArray } from '@angular/forms';
+import { Logs } from 'selenium-webdriver';
 
 @Component({
   selector: 'app-reactived-form',
@@ -7,6 +8,8 @@ import { FormControl, FormGroup, FormArray } from '@angular/forms';
   styleUrls: ['./reactived-form.component.css']
 })
 export class ReactivedFormComponent implements OnInit {
+
+  // private xxx: FormControl;
 
   private formModel: FormGroup;
 
@@ -22,6 +25,17 @@ export class ReactivedFormComponent implements OnInit {
         passwordConfirm: new FormControl(),
       }),
     });
+  }
+
+  addEmail() {
+    let emails = this.formModel.get('emails') as FormArray;
+    emails.push(new FormControl());
+    
+  }
+
+  createUser() {
+    console.log(this.formModel.value);
+    
   }
 
   ngOnInit() {
