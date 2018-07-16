@@ -33,7 +33,7 @@ export class ReactivedFormComponent implements OnInit {
       mobile: ['', mobileValidator],
       // formGroup 的校验要加入一个key为validator的object中
       passwordInfo : this.fb.group({
-        password: [''],
+        password: ['', Validators.required],
         passwordConfirm: [''],
       }),
     }, {validator: passwordValidator});

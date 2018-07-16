@@ -29,11 +29,12 @@
 
     <div formGroupName="passwordInfo">
       <div>密码：<input formControlName="password" type="password"></div>
+      <div [hidden]="!formModel.hasError('required', 'passwordInfo.password')">密码是必填项</div>
       <div>确认密码：<input formControlName="passwordConfirm" type="password"></div>
     </div>
     <!-- Problem: 这里始终不对,不知道为什么 -->
     <div [hidden]="!formModel.hasError('password', 'passwordInfo')">
-      密码不匹配
+      {{formModel.getError('password', 'passwordInfo')?.description}}
     </div>
   
     <button type="submit">注册</button>
