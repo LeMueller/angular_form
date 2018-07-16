@@ -60,6 +60,8 @@ export class ReactivedFormComponent implements OnInit {
   }
 
   createUser() {
+    
+    console.log("this.formModel.hasError('password', 'passwordInfo'):", this.formModel.hasError('password', ['passwordInfo']));
 
     // 获得校验结果
     let nickNameValid:boolean = this.formModel.get('nickName').valid;
@@ -69,8 +71,10 @@ export class ReactivedFormComponent implements OnInit {
     let nickNameErrors:any = this.formModel.get('nickName').errors;
     // console.log('nickName的校验信息: ', JSON.stringify(nickNameErrors));
     
-
-    console.log(this.formModel.value);
+    // 只有formModel里所有的校验都通过,formModel.valid才为true
+    if(this.formModel.valid){
+      console.log(this.formModel.value);
+    }
     
   }
 

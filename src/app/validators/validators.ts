@@ -23,5 +23,5 @@ export const passwordValidator: ValidatorFn = (info: FormGroup): ValidationError
     
     // console.log('password 是否校验通过:', valid);
 
-    return valid ? null : {password:true};
+    return valid ? null : {password: true};
   }

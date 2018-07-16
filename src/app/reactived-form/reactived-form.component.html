@@ -4,6 +4,14 @@
     <!-- 绑定对象里面的名字时，除了formControlArray, 都要用 xxxName。 因为[]是属性绑定， 类里一定更要有一个对应的属性，然而对象里的名字不是类里的属性，所以不行 -->
     <div>昵称：<input formControlName="nickName" type="text" required pattern="[a-zA-Z0-9]+"></div>
 
+    <!-- hasError(errorCode, path) errorCode: error的key， path: error的formControlName example: nickName: ['xxxx', [Validators.required, Validators.minLength(6)]]-->
+    <div [hidden]="!formModel.hasError('required', 'nickName')">
+      昵称是必填项
+    </div>
+    <div [hidden]="!formModel.hasError('minlength', 'nickName')">
+      昵称的最小长度是6
+    </div>
+
     <div>邮箱
       <ul formArrayName="emails">
         <li *ngFor="let email of formModel.get('emails').controls; let i = index;">
@@ -15,10 +23,17 @@
     </div>
 
     <div>手机号：<input formControlName="mobile" type="number"></div>
-  
+    <div [hidden]="!formModel.hasError('mobile', 'mobile')">
+      手机号不合法
+    </div>
+
     <div formGroupName="passwordInfo">
       <div>密码：<input formControlName="password" type="password"></div>
       <div>确认密码：<input formControlName="passwordConfirm" type="password"></div>
+    </div>
+    <!-- Problem: 这里始终不对,不知道为什么 -->
+    <div [hidden]="!formModel.hasError('password', 'passwordInfo')">
+      密码不匹配
     </div>
   
     <button type="submit">注册</button>
