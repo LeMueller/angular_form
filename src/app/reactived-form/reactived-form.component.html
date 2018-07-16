@@ -2,7 +2,7 @@
 
 <form [formGroup]="formModel" (submit)="createUser()">
     <!-- 绑定对象里面的名字时，除了formControlArray, 都要用 xxxName。 因为[]是属性绑定， 类里一定更要有一个对应的属性，然而对象里的名字不是类里的属性，所以不行 -->
-    <div>昵称：<input formControlName="nickName" type="text" required pattern="[a-zA-Z0-9]+"></div>
+    <div>昵称：<input formControlName="nickName" type="text" required pattern="[a-zA-Z0-9]+" [class.inputHasError]="formModel.get('nickName').invalid"></div>
 
     <!-- hasError(errorCode, path) errorCode: error的key， path: error的formControlName example: nickName: ['xxxx', [Validators.required, Validators.minLength(6)]]-->
     <div [hidden]="!formModel.hasError('required', 'nickName')">
@@ -23,13 +23,24 @@
     </div>
 
     <div>手机号：<input formControlName="mobile" type="number"></div>
-    <div [hidden]="!formModel.hasError('mobile', 'mobile')">
+    <!-- Use status of the item in formModel (pristine & dirty 是否被改变过) -->
+    <div [hidden]="formModel.get('mobile').valid || formModel.get('mobile').pristine">
+      <div [hidden]="!formModel.hasError('mobile', 'mobile')">
       手机号不合法
+      </div>
+    </div>
+    <div [hidden]="!formModel.get('mobile').pending">
+      正在校验手机号合法性
     </div>
 
     <div formGroupName="passwordInfo">
       <div>密码：<input formControlName="password" type="password"></div>
-      <div [hidden]="!formModel.hasError('required', 'passwordInfo.password')">密码是必填项</div>
+
+      <!-- Use status of the item in formModel (touched & untouched 是否获取过焦点)-->
+      <div [hidden]="formModel.get('passwordInfo.password').valid || formModel.get('passwordInfo.password').untouched">
+        <div [hidden]="!formModel.hasError('required', 'passwordInfo.password')">密码是必填项</div>
+      </div>
+
       <div>确认密码：<input formControlName="passwordConfirm" type="password"></div>
     </div>
     <!-- Problem: 这里始终不对,不知道为什么 -->
