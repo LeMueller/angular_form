@@ -24,6 +24,8 @@ export const mobileAsyncValidator: ValidatorFn = (mobile: FormControl): Validati
 
 export const passwordValidatorReactived: ValidatorFn = (info: FormGroup): ValidationErrors | null => {
 
+    console.log('reactived.info: ', info);
+
     let password;
     let passwordConfirm;
     let valid:boolean = false;
@@ -49,7 +51,7 @@ export const passwordValidatorReactived: ValidatorFn = (info: FormGroup): Valida
   // 自定义formGroup的校验方法
 export const passwordValidatorTemlate: ValidatorFn = (info: FormGroup): ValidationErrors | null => {
    
-    console.log('info: ', info);
+    console.log('template.info: ', info);
     
     
     // formGroupName 是passwordInfo
