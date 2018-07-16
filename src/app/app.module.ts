@@ -5,12 +5,16 @@ import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { AppComponent } from './app.component';
 import { TemplateFormComponent } from './template-form/template-form.component';
 import { ReactivedFormComponent } from './reactived-form/reactived-form.component';
+import { MobileValidatorDirective } from './directives/mobile-validator.directive';
+import { PasswordValidatorDirective } from './directives/password-validator.directive';
 
 @NgModule({
   declarations: [
     AppComponent,
     TemplateFormComponent,
-    ReactivedFormComponent
+    ReactivedFormComponent,
+    MobileValidatorDirective,
+    PasswordValidatorDirective
   ],
   imports: [
     BrowserModule,

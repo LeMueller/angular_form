@@ -1,14 +1,14 @@
 <!-- 带有ngForm属性的表单会被Angular接管， 带有ngNoForm的会取消接管 -->
 
-<form #myForm="ngForm" (ngSubmit)="createUser(myForm.value)">
+<form #myForm="ngForm" (ngSubmit)="createUser(myForm.value, myForm.valid)">
 <!-- <form action="/regist" method="post" ngNoForm> -->
 <!-- <div ngForm> -->
   <!-- <div>昵称：<input #myNickName="ngModel" ngModel name="nickname"         type="text" required pattern="[a-zA-Z0-9]+"></div> -->
   <div>昵称：<input ngModel name="nickname" type="text" required pattern="[a-zA-Z0-9]+"></div>
   <div>邮箱：<input ngModel name="email" type="email"></div>
-  <div>手机号：<input ngModel name="mobile" type="number"></div>
+  <div>手机号：<input ngModel name="mobile" mobile type="number"></div>
 
-  <div ngModelGroup="passwordInfo">
+  <div ngModelGroup="passwordInfo" password>
     <div>密码：<input ngModel name="password" type="password"></div>
     <div>确认密码：<input ngModel name="PasswordConfirm" type="password"></div>
   </div>

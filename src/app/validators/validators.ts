@@ -8,7 +8,7 @@ export const mobileValidator: ValidatorFn = (mobile: FormControl): ValidationErr
     let value = (mobile.value || '') + '';
     var myreg = /^(((13[0-9]{1})|(15[0-9]{1})|(18[0-9]{1}))+\d{8})$/;
     let valid = myreg.test(value);
-    // console.log("mobile是否校验通过: " + valid);
+    console.log("mobile是否校验通过: " + valid);
     
     return valid ? null : {mobile: true};
   }
@@ -25,15 +25,24 @@ export const mobileValidator: ValidatorFn = (mobile: FormControl): ValidationErr
 
   // 自定义formGroup的校验方法
 export const passwordValidator: ValidatorFn = (info: FormGroup): ValidationErrors | null => {
+
+    let password;
+    let passwordConfirm;
+    let valid:boolean = false;
     
     // formGroupName 是passwordInfo
-    let password = info.get('passwordInfo').value.password;
+    if(info.get('passwordInfo')) {
+        password = info.get('passwordInfo').value.password;
 
-    let passwordConfirm = info.get('passwordInfo').value.passwordConfirm;
+        passwordConfirm = info.get('passwordInfo').value.passwordConfirm;
 
-    let valid:boolean = password === passwordConfirm;
+    }
     
-    // console.log('password 是否校验通过:', valid);
+    if(password != null && passwordConfirm != null) {
+        valid= password === passwordConfirm;
+    }
+    
+    console.log('password 是否校验通过:', valid);
 
     return valid ? null : {password: {description: '密码和确认密码不匹配'}};
   }

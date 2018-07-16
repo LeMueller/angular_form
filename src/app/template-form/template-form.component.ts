@@ -7,8 +7,10 @@ import { Component, OnInit } from '@angular/core';
 })
 export class TemplateFormComponent implements OnInit {
 
-  createUser(info: any) {
+  createUser(info: any, valid: boolean) {
     console.log(info);
+    console.log(valid);
+    
     
   }
 
