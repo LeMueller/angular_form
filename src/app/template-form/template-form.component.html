@@ -16,10 +16,12 @@
 
   <div>邮箱：<input ngModel name="email" type="email"></div>
 
-  <div>手机号：<input ngModel name="mobile" mobile type="number"></div>
-  <div [hidden]="!myForm.form.hasError('mobile', 'mobile')">
+  <div>手机号：<input ngModel name="mobile" mobile type="number" (input)="onMobileInput(myForm)"></div>
+  <div [hidden]="mobileValid || mobilePristine">
+    <div [hidden]="!myForm.form.hasError('mobile', 'mobile')">
       手机号不合法
-      </div>
+    </div>
+  </div>
 
   <div ngModelGroup="passwordInfo" password>
     <div>密码：<input ngModel required name="password" type="password"></div>
