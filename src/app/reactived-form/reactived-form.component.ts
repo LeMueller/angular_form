@@ -2,7 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { FormControl, FormGroup, FormArray, FormBuilder, AbstractControl, Validators, ValidatorFn, ValidationErrors } from '@angular/forms';
 import { Logs } from 'selenium-webdriver';
 
-import { mobileValidator, passwordValidator } from '../validators/validators';
+import { mobileValidator, passwordValidator, mobileAsyncValidator } from '../validators/validators';
 
 @Component({
   selector: 'app-reactived-form',
@@ -30,7 +30,7 @@ export class ReactivedFormComponent implements OnInit {
         [''],
       ]),
       // formControl 的校验直接加在数组后面就可以
-      mobile: ['', mobileValidator],
+      mobile: ['', mobileValidator, mobileAsyncValidator],
       // formGroup 的校验要加入一个key为validator的object中
       passwordInfo : this.fb.group({
         password: ['', Validators.required],
