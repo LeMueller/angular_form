@@ -1,16 +1,17 @@
 <!-- 带有ngForm属性的表单会被Angular接管， 带有ngNoForm的会取消接管 -->
 
-<form #myForm="ngForm" (ngSubmit)="createUser(myForm.value, myForm.valid)">
+<!-- novalidate 不用浏览器的校验，而是用angular自己的校验 -->
+<form #myForm="ngForm" (ngSubmit)="createUser(myForm.value, myForm.valid)" novalidate>
 <!-- <form action="/regist" method="post" ngNoForm> -->
 <!-- <div ngForm> -->
   <!-- <div>昵称：<input #myNickName="ngModel" ngModel name="nickname"         type="text" required pattern="[a-zA-Z0-9]+"></div> -->
-  <div>昵称：<input ngModel name="nickname" type="text" required pattern="[a-zA-Z0-9]+"></div>
+  <div>昵称：<input ngModel required minlength="6" name="nickname" type="text" required pattern="[a-zA-Z0-9]+"></div>
   <div>邮箱：<input ngModel name="email" type="email"></div>
   <div>手机号：<input ngModel name="mobile" mobile type="number"></div>
 
   <div ngModelGroup="passwordInfo" password>
     <div>密码：<input ngModel name="password" type="password"></div>
-    <div>确认密码：<input ngModel name="PasswordConfirm" type="password"></div>
+    <div>确认密码：<input ngModel name="passwordConfirm" type="password"></div>
   </div>
 
   <button type="submit">注册</button>

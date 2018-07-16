@@ -2,7 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { FormControl, FormGroup, FormArray, FormBuilder, AbstractControl, Validators, ValidatorFn, ValidationErrors } from '@angular/forms';
 import { Logs } from 'selenium-webdriver';
 
-import { mobileValidator, passwordValidator, mobileAsyncValidator } from '../validators/validators';
+import { mobileValidator, passwordValidatorReactived, mobileAsyncValidator } from '../validators/validators';
 
 @Component({
   selector: 'app-reactived-form',
@@ -36,7 +36,7 @@ export class ReactivedFormComponent implements OnInit {
         password: ['', Validators.required],
         passwordConfirm: [''],
       }),
-    }, {validator: passwordValidator});
+    }, {validator: passwordValidatorReactived});
   }
 
   // constructor() {

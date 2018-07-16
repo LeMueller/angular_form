@@ -1,10 +1,10 @@
 import { Directive } from '@angular/core';
-import { passwordValidator } from '../validators/validators';
+import { passwordValidatorTemlate } from '../validators/validators';
 import { NG_VALIDATORS } from '@angular/forms';
 
 @Directive({
   selector: '[password]',
-  providers: [{provide: NG_VALIDATORS, useValue: passwordValidator, multi: true}]  
+  providers: [{provide: NG_VALIDATORS, useValue: passwordValidatorTemlate, multi: true}]  
 })
 export class PasswordValidatorDirective {
 
